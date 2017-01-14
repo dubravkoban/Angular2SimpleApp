@@ -1,0 +1,158 @@
+<div class="container">
+
+
+
+    <!--<div class="form-group" [class.has-error]="firstName.invalid && firstName.touched">
+        <label class="control-label">First name</label>
+        <input #firstName="ngModel" required type="text" class="form-control" placeholder="Name" name="firstName" 
+                [ngModel]="model.firstName"
+                (ngModelChange)="firstNameToUpperCase($event)">
+        <div *ngIf="firstName.invalid && firstName.touched" class="alert alert-danger">
+            First name is required.
+        </div>
+    </div>
+
+    <div class="form-group" [class.has-error]="lastName.invalid && lastName.touched">
+        <label class="control-label">Last name</label>
+        <input #lastName="ngModel" type="text" required class="form-control" placeholder="LastName" name="lastName"
+                [ngModel]="model.lastName">
+        <div *ngIf="lastName.invalid && lastName.touched" class="alert alert-danger">
+            Last name is required.
+        </div>
+    </div>
+
+    <div class="checkbox">
+            <label>
+                <input type="checkbox" name="is-full-time" 
+                    [(ngModel)]="model.isFullTime">
+            </label>
+    </div>
+
+    <label>Payment type</label>
+    <div class="radio">
+        <label>
+            <input type="radio" name="paymentType" value="w2" checked
+                [(ngModel)]="model.paymentType">
+            W2
+        </label>
+        <label>
+            <input type="radio" name="paymentType" value="1099"
+                [(ngModel)]="model.paymentType">
+            1099
+        </label>
+    </div>-->
+
+     <!--<div class="form-group" [class.has-error]="hasPrimaryLanguageError" >
+        <label class="control-label">Primary language</label>
+        <select #primaryLanguage class="form-control" name="primaryLanguage" 
+                (blur)="validatePrimaryLanguage(primaryLanguage.value)"
+                (change)="validatePrimaryLanguage(primaryLanguage.value)"
+                [(ngModel)]="model.primaryLanguage">
+            <option value="default">Select a language...</option>
+            <option *ngFor="let lang of languages" >
+                {{ lang }}
+            </option>
+        </select>
+    </div>-->
+
+<h3>Procesi</h3>
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)='redirectNewProces()'>Novi</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr style="font-weight: bold;">
+                <td>Id</td>
+                <td>Naziv</td>
+                <td>Opis</td>
+                <td>Prioritet</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of modelProces">
+                <td>{{ data.procesiId }}</td>
+                <td> <a #enkor [id]="data.procesiId" (click)="loadOthers(enkor.id)"> {{ data.naziv }} </a> </td>
+                <td>{{ data.opis }}</td>
+                <td>{{ data.prioritet }}</td>
+                <td> <a [routerLink]="['/proces/edit', data.procesiId]">Uredi</a> </td>
+                <td> <button #button type="button" class="btn btn-danger"  [value]="data.procesiId" (click)="deleteProces(button.value)">Obriši</button></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+<hr />
+
+<h3>Aktivnosti</h3>
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)='redirectNewAktivnost()'>Novi</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr style="font-weight: bold;">
+                <td>Id</td>
+                <td>Naziv</td>
+                <td>Opis</td>
+                <td>Periodike odvijanja id</td>
+                <td>Sati trajanja</td>
+                <td>Procesi id</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of modelAktivnost">
+                <td>{{ data.aktivnostiId }}</td>
+                <td>{{ data.naziv }}</td>
+                <td>{{ data.opis }}</td>
+                <td>{{ data.periodikeOdvijanjaId }}</td>
+                <td>{{ data.satiTrajanja }}</td>
+                <td>{{ data.procesiId }}</td>
+                <td> <a [routerLink]="['/editAktivnost', data.aktivnostiId]">Uredi</a> </td>
+                <td> <button #button type="button" class="btn btn-danger" [value]="data.id" (click)="deleteAktivnost(button.value)">Obriši</button></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+    <hr />
+
+<h3>Rizici</h3>
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)='redirectNewRizik()'>Novi</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr style="font-weight: bold;">
+                <td>Id</td>
+                <td>Naziv</td>
+                <td>Opis</td>
+                <td>Vjerojatnost nastanka</td>
+                <td>Veličina štete</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of modelRizik">
+                <td>{{ data.riziciId }}</td>
+                <td>{{ data.naziv }}</td>
+                <td>{{ data.opis }}</td>
+                <td>{{ data.vjerojatnostNastanka }}</td>
+                <td>{{ data.velicinaStete }}</td>
+                <td> <a [routerLink]="['/editRizik', data.riziciId]">Uredi</a> </td>
+                <td> <button #button type="button" [value]="data.riziciId" (click)="deleteRizik(button.value)">Obriši</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--<button class="btn btn-primary" type="submit"
+        [disabled]="form.invalid">Ok</button>-->
+</form>
+
+</div>

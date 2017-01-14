@@ -1,0 +1,38 @@
+<div class="container">
+    <h3>Unos novog rizika</h3>
+
+    <form #form="ngForm" (submit)="submitForm(form)" novalidate>
+
+        <div class="form-group">
+             <label class="control-label">Id</label>
+             <input type="text" required class="form-control" name="aktivnostiId" [(ngModel)]="model.aktivnostiId" disabled />
+        </div>
+
+        <div class="form-group">
+             <label class="control-label">Naziv</label>
+             <input type="text" required class="form-control" name="naziv" [(ngModel)]="model.naziv" />
+        </div>
+
+        <div class="form-group">
+             <label class="control-label">Opis</label>
+              <input type="text" required class="form-control" name="opis" [(ngModel)]="model.opis" />
+        </div>
+        
+        <div class="form-group">
+             <label class="control-label">Periodike odvijanja</label>
+             <input type="text" required class="form-control" name="periodikeOdvijanjaId" [(ngModel)]="model.periodikeOdvijanjaId" />
+        </div>
+
+        <div class="form-group">
+             <label class="control-label">Sati trajanja</label>
+             <input type="text" required class="form-control" name="satiTrajanja" [(ngModel)]="model.satiTrajanja" />
+        </div>
+
+        <div class="form-group">
+             <label class="control-label">Proces id</label>
+             <input type="text" required class="form-control" name="procesiId" [(ngModel)]="model.procesiId" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Spremi</button>
+    </form>
+</div>
